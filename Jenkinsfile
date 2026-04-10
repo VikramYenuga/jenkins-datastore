@@ -5,9 +5,9 @@ pipeline {
         stage("Checkout") {
             steps {
                 checkout scmGit(
-                    branches: [[name: '*/master']],
+                    branches: [[name: '*/main']],
                     extensions: [],
-                    userRemoteConfigs: [[url: 'https://github.com/Ruchitbomboji/DataStore.git']]
+                    userRemoteConfigs: [[url: 'https://github.com/VikramYenuga/jenkins-datastore.git']]
                 )
             }
         }
