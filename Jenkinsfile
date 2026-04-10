@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     stages {
-
         stage("Checkout") {
             steps {
                 git 'https://github.com/VikramYenuga/jenkins-datastore.git'
@@ -21,7 +20,7 @@ pipeline {
         stage("Maven Test") {
             steps {
                 sh '''
-                    echo "-------- Running Tests --------"
+                    echo "-------- Executing Testcases --------"
                     mvn test
                 '''
             }
@@ -31,7 +30,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarQube') {   // ✅ FIXED
                     sh '''
-                        echo "-------- SonarQube Analysis --------"
+                        echo "-------- Running SonarQube Analysis --------"
                         mvn sonar:sonar \
                           -Dsonar.projectKey=DataStore \
                           -Dsonar.projectName=DataStore
@@ -51,7 +50,7 @@ pipeline {
         stage("Artifact Store") {
             steps {
                 sh '''
-                  echo "-------- Uploading to S3 --------"
+                  echo "-------- Pushing Artifacts To S3 --------"
                   aws s3 cp ./target/*.jar s3://vikram-datastore-artefact-store-jenkins-apps/
                 '''
             }
