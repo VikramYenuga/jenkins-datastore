@@ -52,6 +52,15 @@ pipeline {
         """
       }
     }
+    stage("Docker Image Build") {
+      steps {
+        sh """
+          echo "-------- Building Docker Image --------"
+          docker build -t datastore:"${App_Version}" .
+          echo "-------- Image Successfully Built --------"
+        """
+      }
+    }
 
 }
 }
