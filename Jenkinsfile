@@ -24,5 +24,17 @@ pipeline {
         """
       }
     }
+     stage("SonarQube Analysis") {
+            steps {
+                withSonarQubeEnv('SonarQube') {   // ✅ FIXED
+                    sh '''
+                        echo "-------- Running SonarQube Analysis --------"
+                        mvn sonar:sonar \
+                          -Dsonar.projectKey=DataStore \
+                          -Dsonar.projectName=DataStore
+                    '''
+                }
+            }
+        }
 }
 }
