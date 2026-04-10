@@ -15,5 +15,14 @@ pipeline {
         """
       }
     }
+    stage("Maven Test") {
+      steps {
+        sh """
+          echo "-------- Executing Testcases --------"
+          mvn test
+          echo "-------- Testcases Execution Complete --------"
+        """
+      }
+    }
 }
 }
