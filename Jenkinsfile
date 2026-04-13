@@ -114,7 +114,7 @@ pipeline {
     }
     stage("Triggering Deployment") {
       steps {
-        build job: "KubernetesDeployment", parameters: [string(name: "App_Name", value: "datastore-deploy"), string(name: "App_Version", value: "${params.App_Version}")]
+        build job: "Kubernetes-ArgoCD", parameters: [string(name: "App_Name", value: "datastore-deploy"), string(name: "App_Version", value: "${params.App_Version}")]
       }
     }
 
